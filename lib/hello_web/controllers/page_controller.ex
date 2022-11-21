@@ -6,4 +6,6 @@ defmodule HelloWeb.PageController do
     # so skip the default app layout.
     render(conn, :home, layout: false)
   end
+
+  plug HelloWeb.Plugs.Locale, "en" when action in [:index]
 end
