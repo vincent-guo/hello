@@ -22,15 +22,36 @@ defmodule HelloWeb.Router do
     resources "/users", UserController do
       resources "/posts", PostController
     end
+    resources "/reviews", ReviewController
     resources "/comments", CommentController, except: [:delete]
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
   end
 
+  scope "/", AnotherAppWeb do
+    pipe_through :browser
+
+    resources "/posts", PostController
+  end
+
+  scope "/admin", HelloWeb do
+    pipe_through :browser
+
+    resources "/images", ImageController
+    resources "/reviews", ReviewController
+    resources "/users", UserController
+  end
+
   # Other scopes may use custom stacks.
-  # scope "/api", HelloWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", HelloWeb.Api, as: :api do
+    pipe_through :api
+
+    scope "/v1", V1, as: :v1 do
+      resources "/images", ImageController
+      resources "/reviews", ReviewController
+      resources "/users", UserController
+    end
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:hello, :dev_routes) do
