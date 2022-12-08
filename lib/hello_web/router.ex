@@ -19,8 +19,9 @@ defmodule HelloWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    resources "/users", UserController
-    resources "/posts", PostController, only: [:index, :show]
+    resources "/users", UserController do
+      resources "/posts", PostController
+    end
     resources "/comments", CommentController, except: [:delete]
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
