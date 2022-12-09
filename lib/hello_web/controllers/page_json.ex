@@ -1,6 +1,11 @@
 defmodule HelloWeb.PageJson do
 
-  def index(_assigns) do
-    %{message: "this is some JSON"}
+  # ?_format=json
+  def home(%{pages: pages}) do
+    %{data: Enum.map(pages, fn page -> %{title: page.title} end)}
+  end
+
+  def show(%{page: page}) do
+    %{data: %{title: page.title}}
   end
 end

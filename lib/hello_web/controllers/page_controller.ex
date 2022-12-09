@@ -1,16 +1,17 @@
 defmodule HelloWeb.PageController do
   use HelloWeb, :controller
 
+  plug :put_view, html: HelloWeb.PageHTML, json: HelloWeb.PageJson
+
   def home(conn, _params) do
-    conn
-    |> put_flash(:info, "Welcome to Phoenix, from flash info!")
-    |> put_flash(:error, "Let's pretend we have an error.")
-    |> redirect(to: ~p"/redirect_test")
+    pages = [%{title: "foo"}, %{title: "bar"}]
+
+    render(conn, :home, layout: false, pages: pages)
   end
 
-  def redirect_test(conn, _params) do
-    render(conn, :home)
-  end
+  def show(conn, _params) do
+    page = %{title: "foo"}
 
-  plug HelloWeb.Plugs.Locale, "en" when action in [:home]
+    render(conn, :show, page: page)
+  end
 end
