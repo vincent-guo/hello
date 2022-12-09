@@ -2,9 +2,10 @@ defmodule HelloWeb.PageController do
   use HelloWeb, :controller
 
   def home(conn, _params) do
-    # The home page is often custom made,
-    # so skip the default app layout.
-    redirect(conn, external: "https://elixir-lang.org/")
+    conn
+    |> put_flash(:info, "Welcome to Phoenix, from flash info!")
+    |> put_flash(:error, "Let's pretend we have an error.")
+    |> redirect(to: ~p"/redirect_test")
   end
 
   def redirect_test(conn, _params) do
