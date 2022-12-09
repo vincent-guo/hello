@@ -3,7 +3,7 @@ defmodule MyComponent do
 
   def greet(assigns) do
     ~H"""
-    <p>Hwllo, <%= @name %>!</p>
+    <p>Hello, <%= @name %>!</p>
     """
   end
 
