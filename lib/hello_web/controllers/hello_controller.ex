@@ -1,6 +1,8 @@
 defmodule HelloWeb.HelloController do
   use HelloWeb, :controller
 
+  plug :put_view, html: HelloWeb.PageHTML, json: HelloWeb.PageJson
+
   def index(conn, _params) do
     render(conn, :index)
   end
