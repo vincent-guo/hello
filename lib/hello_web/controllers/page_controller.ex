@@ -5,8 +5,8 @@ defmodule HelloWeb.PageController do
     # The home page is often custom made,
     # so skip the default app layout.
     conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(201, "123")
+    |> put_resp_content_type("text/xml")
+    |> render(:index, content: "some_xml_content")
   end
 
   plug HelloWeb.Plugs.Locale, "en" when action in [:index]
