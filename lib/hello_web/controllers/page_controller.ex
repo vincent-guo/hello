@@ -4,10 +4,12 @@ defmodule HelloWeb.PageController do
   def home(conn, _params) do
     # The home page is often custom made,
     # so skip the default app layout.
-    conn
-    |> put_status(202)
-    |> render(:home)
+    redirect(conn, external: "https://elixir-lang.org/")
   end
 
-  plug HelloWeb.Plugs.Locale, "en" when action in [:index]
+  def redirect_test(conn, _params) do
+    render(conn, :home)
+  end
+
+  plug HelloWeb.Plugs.Locale, "en" when action in [:home]
 end
