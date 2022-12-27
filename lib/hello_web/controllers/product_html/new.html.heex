@@ -11,6 +11,9 @@
   <.input field={{f, :description}} type="text" label="description" />
   <.input field={{f, :price}} type="number" label="price" step="any" />
   <.input field={{f, :views}} type="number" label="views" />
+
+  <%= category_select f, @changeset %>
+
   <:actions>
     <.button>Save Product</.button>
   </:actions>
