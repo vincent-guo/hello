@@ -19,4 +19,6 @@
   </.form>
 
   <b>Total</b>: <%= currency_to_str(ShoppingCart.total_cart_price(@cart)) %>
+
+  <.link href={~p"/orders"} method="post">complete order</.link>
 <% end %>

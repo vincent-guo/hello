@@ -1,16 +1,20 @@
-<.header>
-  Order <%= @order.id %>
-  <:subtitle>This is a order record from your database.</:subtitle>
-  <:actions>
-    <.link href={~p"/orders/#{@order}/edit"}>
-      <.button>Edit order</.button>
-    </.link>
-  </:actions>
-</.header>
+<h1>Thank you for your order!</h1>
 
-<.list>
-  <:item title="User uuid"><%= @order.user_uuid %></:item>
-  <:item title="Total price"><%= @order.total_price %></:item>
-</.list>
+<ul>
+  <li>
+    <strong>User uuid:</strong>
+    <%= @order.user_uuid %>
+  </li>
 
-<.back navigate={~p"/orders"}>Back to orders</.back>
+  <li :for={item <- @order.line_items}>
+    <%= item.product.title %>
+    (<%= item.quantity %>) - <%= HelloWeb.CartView.currency_to_str(item.price) %>
+  </li>
+
+  <li>
+    <strong>Total price:</strong>
+    <%= HelloWeb.CartView.currency_to_str(@order.total_price) %>
+  </li>
+</ul>
+
+<span><.link href={~p"/cart"}>Back</.link></span>
