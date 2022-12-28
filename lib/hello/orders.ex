@@ -208,7 +208,7 @@ defmodule Hello.Orders do
 
   def complete_order(%ShoppingCart.Cart{} = cart) do
     line_items =
-      Enum.map(cart.lines, fn item ->
+      Enum.map(cart.items, fn item ->
         %{product_id: item.product_id, price: item.product.price, quantity: item.quantity}
       end)
 

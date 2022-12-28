@@ -25,7 +25,6 @@ defmodule HelloWeb.Router do
     end
   end
 
-  alias HelloWeb.OrderController
   alias Hello.ShoppingCart
 
   def fetch_current_cart(conn, _opts) do
