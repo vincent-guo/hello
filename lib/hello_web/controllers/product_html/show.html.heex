@@ -5,6 +5,7 @@
     <.link href={~p"/products/#{@product}/edit"}>
       <.button>Edit product</.button>
     </.link>
+    <.link href={~p"/cart_items?product_id=#{@product.id}"} method="post">Add to cart</.link>
   </:actions>
 </.header>
 
