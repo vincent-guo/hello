@@ -25,6 +25,7 @@ defmodule HelloWeb.Router do
     end
   end
 
+  alias HelloWeb.OrderController
   alias Hello.ShoppingCart
 
   def fetch_current_cart(conn, _opts) do
@@ -50,6 +51,8 @@ defmodule HelloWeb.Router do
 
     get "/cart", CartController, :show
     put "/cart", CartController, :update
+
+    resources "/orders", OrderController, only: [:create, :show]
 
     get "/show", PageController, :show
     get "/redirect_test", PageController, :redirect_test
